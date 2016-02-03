@@ -6,9 +6,7 @@ def insertrow(worksheet,rownumber,rowcontents):
 	for colnumber in range(1,len(rowcontents)+1):
 		newcell = worksheet.cell(row=rownumber,column=colnumber)
 		newcell.value=rowcontents[colnumber-1]
-		
-
-
+	
 opts, args = getopt.getopt(sys.argv[1:],"i:o:")
 inputfile = ''
 outputfile = ''
@@ -43,14 +41,11 @@ for ws in wb:
 					newrow.append(newcell.value)
 				
 			if len(newrow)==colcount:
-				
 				skiprow=False
 				if len(colheaders)!=colcount:
 					colheaders=newrow
-				else: 
-					if colheaders==newrow:
+				elif colheaders==newrow:
 						skiprow=True
-				
 				if not skiprow:
 					newrownumber+=1
 					insertrow(newworksheet,newrownumber,newrow)
